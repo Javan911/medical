@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+    <display-name></display-name>
+
+    <!-- ———————————————————————————————————————————————listener——————————————————————————————————————————————— -->
+
+    <!-- 配置监听器 -->
+    <listener>
+        <listener-class>com.gxuwz.medical.web.listener.AccessListener</listener-class>
+    </listener>
+
+    <!-- log4j2 -->
+    <context-param>
+        <param-name>log4jConfiguration</param-name>
+        <param-value>/WEB-INF/classes/log4j2.xml</param-value>
+    </context-param>
+    <listener>
+        <listener-class>org.apache.logging.log4j.web.Log4jServletContextListener</listener-class>
+    </listener>
+    <filter>
+        <filter-name>log4jServletFilter</filter-name>
+        <filter-class>org.apache.logging.log4j.web.Log4jServletFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>log4jServletFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>INCLUDE</dispatcher>
+        <dispatcher>ERROR</dispatcher>
+    </filter-mapping>
+
+
+    <!-- ———————————————————————————————————————————————filter——————————————————————————————————————————————— -->
+
+    <!-- 字符集编码过滤器，默认设置UTF-8 -->
+    <filter>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <filter-class>com.gxuwz.medical.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+
+    </filter>
+    <filter-mapping>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+
+    </filter-mapping>
+
+    <!-- ———————————————————————————————————————————————servlet——————————————————————————————————————————————— -->
+
+    <!-- 登录验证 -->
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>com.gxuwz.medical.web.servlet.LoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/LoginServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- 安全退出 -->
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>com.gxuwz.medical.web.servlet.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/LogoutServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- 用户管理 -->
+    <servlet>
+        <servlet-name>UserServlet</servlet-name>
+        <servlet-class>com.gxuwz.medical.web.servlet.UserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserServlet</servlet-name>
+        <url-pattern>/system/UserServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- 角色管理 -->
+    <servlet>
+        <servlet-name>RoleServlet</servlet-name>
+        <servlet-class>com.gxuwz.medical.web.servlet.RoleServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RoleServlet</servlet-name>
+        <url-pattern>/system/RoleServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- 权限管理 -->
+    <servlet>
+        <servlet-name>MenuServlet</servlet-name>
+        <servlet-class>com.gxuwz.medical.web.servlet.MenuServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MenuServlet</servlet-name>
+        <url-pattern>/system/MenuServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- 行政区域管理 -->
+    <servlet>
+        <servlet-name>AreaServlet</servlet-name>
+        <servlet-class>com.gxuwz.medical.web.servlet.AreaServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AreaServlet</servlet-name>
+        <url-pattern>/system/AreaServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- 农合机构管理 -->
+    <servlet>
+        <servlet-name>InstitutionServlet</servlet-name>
+        <servlet-class>com.gxuwz.medical.web.servlet.InstitutionServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InstitutionServlet</servlet-name>
+        <url-pattern>/system/InstitutionServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- 慢性病分类管理 -->
+    <servlet>
+        <servlet-name>DiseaseServlet</servlet-name>
+        <servlet-class>com.gxuwz.medical.web.servlet.DiseaseServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DiseaseServlet</servlet-name>
+        <url-pattern>/system/DiseaseServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- 医疗机构管理 -->
+    <servlet>
+        <servlet-name>MedicalServlet</servlet-name>
+        <servlet-class>com.gxuwz.medical.web.servlet.MedicalServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MedicalServlet</servlet-name>
+        <url-pattern>/system/MedicalServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- 家庭档案管理 -->
+    <servlet>
+        <servlet-name>FamilyServlet</servlet-name>
+        <servlet-class>com.gxuwz.medical.web.servlet.FamilyServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FamilyServlet</servlet-name>
+        <url-pattern>/system/FamilyServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- 参合人员档案管理 -->
+    <servlet>
+        <servlet-name>PersonServlet</servlet-name>
+        <servlet-class>com.gxuwz.medical.web.servlet.PersonServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PersonServlet</servlet-name>
+        <url-pattern>/system/PersonServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- 参合缴费登记 -->
+    <servlet>
+        <servlet-name>PayRecordServlet</servlet-name>
+        <servlet-class>com.gxuwz.medical.web.servlet.PayRecordServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PayRecordServlet</servlet-name>
+        <url-pattern>/system/PayRecordServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- 参合缴费标准 -->
+    <servlet>
+        <servlet-name>PayStandardServlet</servlet-name>
+        <servlet-class>com.gxuwz.medical.web.servlet.PayStandardServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PayStandardServlet</servlet-name>
+        <url-pattern>/system/PayStandardServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- 慢性病证管理 -->
+    <servlet>
+        <servlet-name>DiseaseCardServlet</servlet-name>
+        <servlet-class>com.gxuwz.medical.web.servlet.DiseaseCardServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DiseaseCardServlet</servlet-name>
+        <url-pattern>/system/DiseaseCardServlet</url-pattern>
+    </servlet-mapping>
+
+
+    <welcome-file-list>
+        <welcome-file>login.jsp</welcome-file>
+    </welcome-file-list>
+</web-app>
